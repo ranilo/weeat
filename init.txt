@@ -1,0 +1,6 @@
+# create the restaurant
+bin/rails generate scaffold Restaurant name:string ...
+bin/rails db:migrate
+
+# create the review
+bin/rails generate scaffold Review name:string rating:integer comment:text restaurant:Restaurant
