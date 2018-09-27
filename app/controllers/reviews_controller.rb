@@ -25,6 +25,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
       if @review.save
+        update_rating
         render json: @review
       else
         render json: @review.errors
@@ -47,6 +48,13 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     render status: 200, json: @review
+  end
+
+  def update_rating
+    size = @restaurant.reviews.length
+    updated = size == 0 ? 0 : @restaurant.reviews.to_a.sum{|review| review.rating} / size
+    @restaurant.rating = updated
+    @restaurant.save
   end
 
   private
