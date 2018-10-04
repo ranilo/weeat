@@ -13,5 +13,17 @@
 
 class Review < ApplicationRecord
   belongs_to :restaurant
+  before_save :clean_comments
+  after_save :update_rating
+  after_destroy :update_rating
+
+  def update_rating
+    restaurant.update_rating
+  end
+
+  def clean_comments
+    self.comment = comment.gsub!(/[^0-9A-Za-z]/, '')
+
+  end
 
 end
