@@ -49,7 +49,7 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1.json
   def destroy
     @restaurant.destroy
-    render status: 200, json: @restaurant
+    render status: Rack::Utils.status_code(:ok), json: @restaurant
   end
 
   private

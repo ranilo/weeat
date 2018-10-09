@@ -16,4 +16,12 @@
 class Restaurant < ApplicationRecord
   has_many :reviews
 
+  def update_rating
+    reload
+    size = reviews.length
+    updated_rating = size == 0 ? 0 : reviews.to_a.sum {|review| review.rating} / size
+    update(rating: updated_rating)
+  end
+
+
 end
