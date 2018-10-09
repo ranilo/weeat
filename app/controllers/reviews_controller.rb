@@ -5,13 +5,13 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
-    render_json content: @reviews
+    render_json content: Review.all
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    render_json content: @review
   end
 
   # GET /reviews/1/edit
@@ -21,27 +21,28 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    if (@restaurant)
-      @review = Review.new(review_params)
-
-      if @review.save
-        render json: @review
+    if @restaurant.present?
+      review = Review.new(review_params)
+      if review.save
+        render_json content: review
       else
-        render json: @review.errors
+        render_json content: review.errors
       end
     else
-      render json: {:error=>"restaurant #{review_params[:restaurant_id]} dose not exist"}, status: Rack::Utils.status_code(:forbidden)
+      render json: {error: "restaurant id #{review_params[:restaurant_id]} does not exist"}, status: :forbidden
     end
   end
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    if @restaurant
-      if @review.update(review_params)
-        render json: @review
-      else
-        render json: @review.errors
+    if @restaurant.present?
+      if @review.present?
+        if @review.update(review_params)
+          render_json content: @review
+        else
+          render_json content: @review.errors
+        end
       end
     end
 
@@ -51,13 +52,12 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1.json
   def destroy
     @review.destroy
-    render status: 200, json: @review
   end
 
 
   def render_json (params)
     if (params[:content].nil?)
-      render status: Rack::Utils.status_code(:ok), json: {}
+      render json:{}, status: :ok
     else
       render json: params[:content]
     end
@@ -66,16 +66,11 @@ class ReviewsController < ApplicationController
   private
 
   def set_review
-    @review = Review.find(params[:id])
+    @review = Review.find_by_id(params[:id])
   end
 
   def set_restaurant
-    begin
-      @restaurant = Restaurant.find(params[:review][:restaurant_id])
-    rescue StandardError
-      @restaurant = nil
-    end
-
+    @restaurant = Restaurant.find_by_id(params[:review][:restaurant_id])
   end
 
   def review_params

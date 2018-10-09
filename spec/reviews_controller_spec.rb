@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-describe  ReviewsController , :type => :controller do
-  context 'GET #index' do
-    it 'has a 200 status code' do
-      get :index
+describe  ReviewsController , type: :controller do
+  describe '#index?' do
+    it 'response ok' do
       expect(response).to have_http_status(:success)
     end
     it 'returns json' do
@@ -41,7 +40,6 @@ describe  ReviewsController , :type => :controller do
     end
   end
 
-
   context 'adding a review' do
     let(:restaurant) {FactoryBot.create(:restaurant)}
 
@@ -50,6 +48,5 @@ describe  ReviewsController , :type => :controller do
        expect(restaurant.reload.rating).to eq review.rating
      end
   end
-
 
 end
