@@ -13,6 +13,18 @@
 
 class Review < ApplicationRecord
   belongs_to :restaurant
+  before_save :clean_comments
+  after_save :update_rating
+  after_destroy :update_rating
   validates_inclusion_of :rating, in: 0..3
 
+  def update_rating
+    restaurant.update_rating
+  end
+
+
+  def clean_comments
+    self.comment = comment.gsub!('\000', '')
+
+  end
 end
