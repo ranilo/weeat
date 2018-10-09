@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :restaurant do
-    name{Faker::Name.name}
+    name {Faker::Name.name}
     cuisine {Faker::Name.name}
     rating {0}
     address {Faker::Address}

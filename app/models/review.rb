@@ -22,8 +22,7 @@ class Review < ApplicationRecord
   end
 
   def clean_comments
-    self.comment = comment.gsub!(/[^0-9A-Za-z]/, '')
+    self.comment = comment.gsub!('\000', '')
 
   end
-
 end
