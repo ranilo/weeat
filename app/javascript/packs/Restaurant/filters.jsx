@@ -27,6 +27,15 @@ class Filters extends React.Component {
         this.combineFilters();
     }
 
+    createUniqueOptionItems(condition){
+        let uniqueSet = new Set(this.props.items.map(condition));
+        let arr = [];
+        uniqueSet.forEach(unique => arr.push(unique));
+        console.log(arr);
+        return arr.map((i) => <option key={i.toString()} value={i}>{i}</option>);
+    }
+
+
     render() {
         return <div className='filters'>
             <div className='names'>
@@ -36,8 +45,13 @@ class Filters extends React.Component {
             </div>
             <div className='rating'>
                 rating
-                <input value={this.state.rating}
-                       onChange={this.handleRatingChange}/>
+                <select value={this.state.rating} type='select'
+                       onChange={this.handleRatingChange}>
+
+                    {this.createUniqueOptionItems(a=>a.rating)}
+
+
+                </select>
             </div>
 
         </div>
