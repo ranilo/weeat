@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom'
 
 import RestaurantList from './Restaurant/RestaurantList'
 import Filters from './Restaurant/filters'
+import Header from './Restaurant/header'
 
 
 const data = [
@@ -44,7 +45,7 @@ class Container extends React.Component {
     }
     render() {
         return <div>
-            {/*<Header/>*/}
+            <Header/>
             <Filters items={data} onFilterChange={this.filters.bind(this)}/>
             <RestaurantList items={data.filter(this.state.filterBy)}/>
             {/*<Map/>*/}

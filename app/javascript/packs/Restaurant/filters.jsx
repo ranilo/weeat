@@ -12,15 +12,12 @@ class Filters extends React.Component {
     filterName = (i) => {return i.name.includes(this.state.name)};
 
     combineFilters = () => {
-        console.log(this.state);
         this.props.onFilterChange(i => (  this.filterRating(i)  &&  this.filterName(i)));
     }
 
     handleRatingChange(e) {
         const rating = e.target.value;
         this.setState({rating: rating});
-        console.log("update rating "+this.state.rating);
-
         this.combineFilters();
     }
 
