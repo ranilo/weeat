@@ -4,23 +4,57 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
 
-const Hello = props => (
-    <div>Hello {props.name}!</div>
-)
+import RestaurantList from './Restaurant/RestaurantList'
+import Filters from './Restaurant/filters'
 
-Hello.defaultProps = {
-    name: 'David'
-}
 
-Hello.propTypes = {
-    name: PropTypes.string
+const data = [
+    {
+        "id": 1,
+        "name": "La",
+        "cuisine": "tes",
+        "rating": 0,
+        "address": "this",
+        "max_delivery_time": 2.0,
+        "created_at": "2018-09-26T07:34:26.005Z",
+        "updated_at": "2018-09-26T07:34:26.005Z",
+        "business_friendly": null
+    },
+    {
+        "id": 3,
+        "name": "La",
+        "cuisine": "tes",
+        "rating": 0,
+        "address": "this",
+        "max_delivery_time": 2.0,
+        "created_at": "2018-09-26T07:35:51.033Z",
+        "updated_at": "2018-09-26T07:35:51.033Z",
+        "business_friendly": true
+    }];
+
+class Container extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state ={filterBy:i=>(i)}
+    }
+    filters(props) {
+        this.setState({filterBy: props})
+    }
+    render() {
+        return <div>
+            {/*<Header/>*/}
+            <Filters items={data} onFilterChange={this.filters.bind(this)}/>
+            <RestaurantList items={data.filter(this.state.filterBy)}/>
+            {/*<Map/>*/}
+        </div>
+    }
 }
 
 
 
 ReactDOM.render(
-    <Hello/>,
+    <Container/>,
     document.body.appendChild(document.getElementById('root')),
 );
