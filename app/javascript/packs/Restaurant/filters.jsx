@@ -63,7 +63,6 @@ class Filters extends React.Component {
                 <input type='text' value={this.state.name}
                        onChange={this.handleNameChange}/>
             </div>
-
             <SelectFilter displayName='cuisine' items={this.props.items} className="cuisine"
                           setValue={this.handleCuisineChange} filter={a => a.cuisine} sortBy={this.asc}/>
             <SelectFilter displayName='rating' items={this.props.items} className="rating"

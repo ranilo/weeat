@@ -14,7 +14,6 @@ class SelectFilter extends React.Component {
         this.props.setValue(value);
     }
 
-
     createUniqueOptionItems() {
         let uniqueSet = new Set(this.props.items.map(this.props.filter));
         let arr = [];
@@ -32,7 +31,6 @@ class SelectFilter extends React.Component {
             </select>
         </div>
     }
-
 };
 
 SelectFilter.propTypes = {
