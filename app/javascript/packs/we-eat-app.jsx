@@ -17,7 +17,7 @@ const data = [
         "cuisine": "tes",
         "rating": 3,
         "address": "this",
-        "max_delivery_time": 2.0,
+        "max_delivery_time": 120,
         "created_at": "2018-09-26T07:34:26.005Z",
         "updated_at": "2018-09-26T07:34:26.005Z",
         "business_friendly": null
@@ -28,7 +28,7 @@ const data = [
         "cuisine": "tes",
         "rating": 1,
         "address": "this",
-        "max_delivery_time": 2.0,
+        "max_delivery_time": 10,
         "created_at": "2018-09-26T07:35:51.033Z",
         "updated_at": "2018-09-26T07:35:51.033Z",
         "business_friendly": true
@@ -39,7 +39,7 @@ const data = [
         "cuisine": "veg",
         "rating": 1,
         "address": "this",
-        "max_delivery_time": 2.0,
+        "max_delivery_time": 30,
         "created_at": "2018-09-26T07:35:51.033Z",
         "updated_at": "2018-09-26T07:35:51.033Z",
         "business_friendly": true

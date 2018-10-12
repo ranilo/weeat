@@ -41,7 +41,8 @@ SelectFilter.propTypes = {
     items: PropTypes.array,
     className: PropTypes.string,
     setValue: PropTypes.func,
-    filter: PropTypes.func
+    filter: PropTypes.func,
+    sort: PropTypes.func
 };
 
 export default SelectFilter;
