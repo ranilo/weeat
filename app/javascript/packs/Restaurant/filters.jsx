@@ -53,6 +53,8 @@ class Filters extends React.Component {
         this.setState({name: str});
         this.combineFilters();
     }
+    asc = (a,b) => (a-b);
+    desc = (a,b) => (b-a);
 
     render() {
         return <div className='filters'>
@@ -63,11 +65,11 @@ class Filters extends React.Component {
             </div>
 
             <SelectFilter displayName='cuisine' items={this.props.items} className="cuisine"
-                          setValue={this.handleCuisineChange} filter={a => a.cuisine}/>
+                          setValue={this.handleCuisineChange} filter={a => a.cuisine} sortBy={this.asc}/>
             <SelectFilter displayName='rating' items={this.props.items} className="rating"
-                          setValue={this.handleRatingChange} filter={a => a.rating}/>
+                          setValue={this.handleRatingChange} filter={a => a.rating} sortBy={this.desc}/>
             <SelectFilter displayName='speed' items={this.props.items} className="speed"
-                          setValue={this.handleSpeedChange} filter={a => a.max_delivery_time}/>
+                          setValue={this.handleSpeedChange} filter={a => a.max_delivery_time} sortBy={this.asc}/>
         </div>
     }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import RestaurantItem from "./RestaurantItem";
 
 class SelectFilter extends React.Component {
     constructor(props) {
@@ -16,11 +15,11 @@ class SelectFilter extends React.Component {
     }
 
 
-    createUniqueOptionItems(condition) {
-        let uniqueSet = new Set(this.props.items.map(condition));
+    createUniqueOptionItems() {
+        let uniqueSet = new Set(this.props.items.map(this.props.filter));
         let arr = [];
         uniqueSet.forEach(unique => arr.push(unique));
-        console.log(arr);
+        arr.sort(this.props.sortBy);
         return arr.map((i) => <option key={i.toString()} value={i}>{i}</option>);
     }
 
@@ -29,7 +28,7 @@ class SelectFilter extends React.Component {
             {this.props.displayName}
             <select value={this.state.value} type='select'
                     onChange={this.handleChange}>
-                {this.createUniqueOptionItems(this.props.filter)}
+                {this.createUniqueOptionItems()}
             </select>
         </div>
     }
@@ -42,7 +41,7 @@ SelectFilter.propTypes = {
     className: PropTypes.string,
     setValue: PropTypes.func,
     filter: PropTypes.func,
-    sort: PropTypes.func
+    sortBy: PropTypes.func
 };
 
 export default SelectFilter;
