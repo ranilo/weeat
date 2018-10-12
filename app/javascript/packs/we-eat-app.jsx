@@ -36,7 +36,7 @@ const data = [
     {
         "id": 43,
         "name": "pa",
-        "cuisine": "tes",
+        "cuisine": "veg",
         "rating": 1,
         "address": "this",
         "max_delivery_time": 2.0,

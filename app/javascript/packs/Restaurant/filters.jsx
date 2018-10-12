@@ -1,22 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import SelectFilter from './selectFilter'
+
 class Filters extends React.Component {
     constructor(props) {
         super(props);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleRatingChange = this.handleRatingChange.bind(this)
-        this.state = {name: '', rating: 0};
+        this.handleCuisineChange = this.handleCuisineChange.bind(this);
+        this.state = {name: '', rating: 0, cuisine:''};
     }
+    
     filterRating = (i)=>{return i.rating >= this.state.rating};
     filterName = (i) => {return i.name.includes(this.state.name)};
+    filterCuisine  = (i) => {return i.cuisine.includes(this.state.cuisine)}
 
     combineFilters = () => {
-        this.props.onFilterChange(i => (  this.filterRating(i)  &&  this.filterName(i)));
+        this.props.onFilterChange(i => (  this.filterRating(i)
+            && this.filterName(i)
+            && this.filterCuisine(i)));
     }
 
-    handleRatingChange(e) {
-        const rating = e.target.value;
+    handleCuisineChange(cuisine){
+        this.setState({cuisine: cuisine});
+        this.combineFilters();
+    }
+
+    handleRatingChange(rating) {
         this.setState({rating: rating});
         this.combineFilters();
     }
@@ -27,15 +38,6 @@ class Filters extends React.Component {
         this.combineFilters();
     }
 
-    createUniqueOptionItems(condition){
-        let uniqueSet = new Set(this.props.items.map(condition));
-        let arr = [];
-        uniqueSet.forEach(unique => arr.push(unique));
-        console.log(arr);
-        return arr.map((i) => <option key={i.toString()} value={i}>{i}</option>);
-    }
-
-
     render() {
         return <div className='filters'>
             <div className='names'>
@@ -43,19 +45,15 @@ class Filters extends React.Component {
                 <input type='text' value={this.state.name}
                        onChange={this.handleNameChange}/>
             </div>
-            <div className='rating'>
-                rating
-                <select value={this.state.rating} type='select'
-                       onChange={this.handleRatingChange}>
 
-                    {this.createUniqueOptionItems(a=>a.rating)}
-
-
-                </select>
-            </div>
-
+            <SelectFilter displayName='rating' items={this.props.items} className="rating"  setValue={this.handleRatingChange} filter={a=>a.rating}/>
+            <SelectFilter displayName='cuisine' items={this.props.items} className="cuisine"  setValue={this.handleCuisineChange} filter={a=>a.cuisine}/>
         </div>
     }
 
+};
+Filters.propTypes = {
+    items: PropTypes.array,
+    onFilterChange: PropTypes.func
 };
 export default Filters;
