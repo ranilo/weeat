@@ -10,60 +10,54 @@ import Filters from './Restaurant/filters'
 import Header from './Restaurant/header'
 
 
-const data = [
-    {
-        "id": 1,
-        "name": "La",
-        "cuisine": "tes",
-        "rating": 3,
-        "address": "this",
-        "max_delivery_time": 120,
-        "created_at": "2018-09-26T07:34:26.005Z",
-        "updated_at": "2018-09-26T07:34:26.005Z",
-        "business_friendly": null
-    },
-    {
-        "id": 3,
-        "name": "Laa",
-        "cuisine": "tes",
-        "rating": 1,
-        "address": "this",
-        "max_delivery_time": 10,
-        "created_at": "2018-09-26T07:35:51.033Z",
-        "updated_at": "2018-09-26T07:35:51.033Z",
-        "business_friendly": true
-    },
-    {
-        "id": 43,
-        "name": "pa",
-        "cuisine": "veg",
-        "rating": 1,
-        "address": "this",
-        "max_delivery_time": 30,
-        "created_at": "2018-09-26T07:35:51.033Z",
-        "updated_at": "2018-09-26T07:35:51.033Z",
-        "business_friendly": true
-    }];
-
 class Container extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={filterBy:i=>(i)}
+        this.state = {filterBy: i => (i), items: [], isLoaded:false, error:false}
     }
+
+    componentDidMount() {
+        fetch("http://localhost:3000/restaurants")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    result.map(a=>a).map((item)=>item.max_delivery_time = parseInt(item.max_delivery_time));
+                    this.setState({
+                        isLoaded: true,
+                        items: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
     filters(props) {
         this.setState({filterBy: props})
     }
+
     render() {
-        return <div>
-            <Header/>
-            <Filters items={data} onFilterChange={this.filters.bind(this)}/>
-            <RestaurantList items={data.filter(this.state.filterBy)}/>
-            {/*<Map/>*/}
-        </div>
+        const { error, isLoaded, items } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            return <div>
+                <Header/>
+                <Filters items={items} onFilterChange={this.filters.bind(this)}/>
+                <RestaurantList items={items.filter(this.state.filterBy)}/>
+                {/*<Map/>*/}
+            </div>
+
+        }
     }
 }
-
 
 
 ReactDOM.render(

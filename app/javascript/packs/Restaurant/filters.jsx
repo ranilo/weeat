@@ -30,7 +30,9 @@ class Filters extends React.Component {
         this.props.onFilterChange(i => (this.filterRating(i)
             && this.filterName(i)
             && this.filterCuisine(i)
-            && this.filterSpeed(i)));
+            && this.filterSpeed(i)
+            )
+        );
     }
 
     handleSpeedChange(speed) {
