@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import RestaurantItem from './RestaurantItem'
-
+import styles from  './index.module.scss';
 
 const RestaurantList = props => (
-    <div>
-        {props.items.map(i => {
+    <div className={styles['restaurants-list']}>
+    {props.items.map(i => {
             return <RestaurantItem key={i.id}
                                    id={i.id}
                                    name={i.name}
