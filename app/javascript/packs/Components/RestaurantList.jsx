@@ -6,6 +6,7 @@ import styles from  './index.module.scss';
 
 const RestaurantList = props => (
     <div className={styles['restaurants-list']}>
+        <React.Fragment>
     {props.items.map(i => {
             return <RestaurantItem key={i.id}
                                    id={i.id}
@@ -17,6 +18,7 @@ const RestaurantList = props => (
                                    business_friendly={i.business_friendly}
             />
         })}
+        </React.Fragment>
     </div>
 );
 

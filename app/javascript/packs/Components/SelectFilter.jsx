@@ -17,8 +17,8 @@ class SelectFilter extends React.Component {
     render() {
         const { className, items, displayName} = this.props;
         return <div className={className}>
-            { displayName }
-            <select value={this.state.value} type='select' onChange={this.handleChange}>
+            <select value={this.state.value } type='select' onChange={this.handleChange}>
+                <option key=''  defaultValue='' label={displayName}></option>
                 { items.map((item) => <option key={item.toString()} value={item}>{item}</option>)}
             </select>
         </div>

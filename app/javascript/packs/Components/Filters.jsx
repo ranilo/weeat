@@ -50,9 +50,10 @@ class Filters extends React.Component {
 
         return <div className='filters'>
             <div className='names'>
-                name
                 <input type='text' value={this.state.name}
-                       onChange={this.handleNameChange}/>
+                       onChange={this.handleNameChange}
+                       placeholder='name'>
+                </input>
             </div>
             <SelectFilter displayName='Cuisine' items={cuisines} className="cuisine"
                           setValue={this.handleCuisineChange} />
