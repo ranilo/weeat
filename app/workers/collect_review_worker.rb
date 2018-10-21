@@ -34,8 +34,6 @@ class CollectReviewWorker
 
 
   def create(params)
-    # puts params
-   review =  Review.create (params)
-    puts review.id
+   Review.create (params)
   end
 end
