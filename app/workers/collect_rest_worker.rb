@@ -25,7 +25,7 @@ class CollectRestWorker
       req.headers['user-key'] = '5dff5d0b63d5c257a3c6bee533de22ff'
     end
     if res.success?
-      hash = JSON.parse(res.body,  object_class: OpenStruct)
+      hash = JSON.parse(res.body, object_class: OpenStruct)
       hash['restaurants'].each do |restaurant|
         rest_params = {
             name: restaurant.restaurant.name,
@@ -34,14 +34,18 @@ class CollectRestWorker
             max_delivery_time: rand(120),
             business_friendly: true
         }
-        create(rest_params)
-
+        id =  create(rest_params)
+        CollectReviewWorker.perform_async(index: restaurant.restaurant.id, id: id)
       end
     end
   end
 
 
   def create(rest_params)
-    Restaurant.create (rest_params) if Restaurant.find_by_name(rest_params[:name]).nil?
+    rest = Restaurant.find_by_name(rest_params[:name])
+    if rest.nil?
+    rest = Restaurant.create (rest_params)
+    end
+    rest.id
   end
 end
