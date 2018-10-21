@@ -8,13 +8,18 @@ import ReactDOM from 'react-dom'
 import Header from './Components/Header'
 import Body from './Components/Body'
 
+import styles from './Components/index.module.scss'
+
+
 class Container extends React.Component {
 
     render() {
-        return <React.Fragment>
-            <Header/>
-            <Body />
-        </React.Fragment>
+        return <div className={styles['weeat']}>
+            <React.Fragment>
+                <Header/>
+                <Body/>
+            </React.Fragment>
+        </div>
     }
 }
 

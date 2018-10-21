@@ -1,3 +1,12 @@
-.restaurants-list {
-  background-color: #B00100;
+@import "grid";
+
+.weeat{
+  @include grid();
+  grid-template-rows: 150px 100px auto;
+  grid-template-areas:
+          "header header header header header"
+          "name_filter name_filter name_filter name_filter name_filter"
+          "filter filter filter filter filter"
+          " . rest map map .";
+  display: grid;
 }

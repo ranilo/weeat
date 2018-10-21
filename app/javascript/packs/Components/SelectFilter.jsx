@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import style from './SelectFilter.module'
 
 class SelectFilter extends React.Component {
     constructor(props) {
@@ -16,9 +17,12 @@ class SelectFilter extends React.Component {
 
     render() {
         const { className, items, displayName} = this.props;
-        return <div className={className}>
-            <select value={this.state.value } type='select' onChange={this.handleChange}>
-                <option key=''  defaultValue='' label={displayName}></option>
+        return <div className={style['select_filter']+' '+ style['select_filter'+this.props.className]}>
+            <label>
+                {displayName}
+            </label>
+            <select  className={style['dropdown-menu']} value={this.state.value } type='select' onChange={this.handleChange}>
+                <option key='' defaultValue='' > select {displayName}</option>
                 { items.map((item) => <option key={item.toString()} value={item}>{item}</option>)}
             </select>
         </div>

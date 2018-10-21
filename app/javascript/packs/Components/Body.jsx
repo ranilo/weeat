@@ -2,6 +2,8 @@ import React from 'react'
 import Filters from "./Filters";
 import RestaurantList from "./RestaurantList";
 
+import styles from './Body.module.scss'
+
 export default class Body extends React.Component {
 
     constructor(props) {
@@ -72,11 +74,11 @@ export default class Body extends React.Component {
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            return <div>
+            return <React.Fragment>
                 <Filters onFilterChange={this.combineFilters.bind(this)}/>
                 <RestaurantList items={visibleItems}/>
-            </div>
-
+                <div className={styles['map']} />
+            </React.Fragment>;
         }
     }
 };

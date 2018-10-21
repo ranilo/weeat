@@ -1,0 +1,26 @@
+@import "grid";
+@import "./../../node_modules/bootstrap/scss/bootstrap";
+
+.name-filter {
+  grid-area: name_filter;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  width: 45%;
+
+  input{
+    width: 100%;
+  }
+}
+
+.select-filters {
+  grid-area: filter;
+  background: red;
+  height: 91px;
+  display: inline-grid;
+  @include grid();
+  grid-template-rows: auto;
+  $body-color: pink;
+
+
+}

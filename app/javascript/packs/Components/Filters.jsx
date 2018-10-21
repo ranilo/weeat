@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import SelectFilter from './SelectFilter'
+import style from './Filters.module.scss'
 
 class Filters extends React.Component {
     constructor(props) {
@@ -48,20 +49,23 @@ class Filters extends React.Component {
         const rating  = [0,1,2,3];
         const speed = [10,20,30];
 
-        return <div className='filters'>
-            <div className='names'>
+        return <React.Fragment>
+        <div className={style['name-filter']}>
                 <input type='text' value={this.state.name}
                        onChange={this.handleNameChange}
                        placeholder='name'>
                 </input>
-            </div>
-            <SelectFilter displayName='Cuisine' items={cuisines} className="cuisine"
-                          setValue={this.handleCuisineChange} />
-            <SelectFilter displayName='Rating' items={rating} className="rating"
-                          setValue={this.handleRatingChange} />
-            <SelectFilter displayName='Speed' items={speed} className="speed"
-                          setValue={this.handleSpeedChange} />
-        </div>
+                </div>
+                <div className={style['select-filters']}>
+                    <SelectFilter displayName='Cuisine' items={cuisines} className="_cuisines"
+                                  setValue={this.handleCuisineChange} />
+                    <SelectFilter displayName='Rating' items={rating} className="_rating"
+                                  setValue={this.handleRatingChange} />
+                    <SelectFilter displayName='Speed' items={speed} className="_speed"
+                                  setValue={this.handleSpeedChange} />
+                </div>
+        </React.Fragment>;
+
     }
 
 };

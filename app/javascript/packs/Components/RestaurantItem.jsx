@@ -1,15 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './RestaurantItem.module.scss'
+import cuisineMap from './CuisineMap'
+
+
+
+
+const ratingStars = rating => {
+    let str = '';
+    for (var i = 0; i < rating; i++) {
+        str += '⭐';
+    }
+    return <label>{str}</label>;
+}
 
 const RestaurantItem = props => (
-    <div className="RestaurantItem">
-        RestaurantItem {props.id}
-        name: {props.name}
-        address: {props.address}
-        cuisine: {props.cuisine}
-        rating: {props.rating}
-        delivery time:{props.max_delivery_time}
-        10bis: {props.business_friendly}
+    <div className={styles['RestaurantItem']}>
+        <div className={styles['cuisine']}> {cuisineMap[props.cuisine]} </div>
+        <div className={styles['name']}> {props.name}  <div className={styles['business_friendly']}> {props.business_friendly?'10bis':''} </div>
+        </div>
+        <div className={styles['rating']}><span>Rating: </span>{ratingStars(props.rating)} </div>
     </div>
 );
 
