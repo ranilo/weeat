@@ -24,7 +24,5 @@ class Review < ApplicationRecord
 
 
   def clean_comments
-    self.comment = comment.gsub!('\000', '')
-
   end
 end
