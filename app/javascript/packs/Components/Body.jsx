@@ -60,13 +60,14 @@ export default class Body extends React.Component {
         return i.rating >= rating
     };
     filterName = (name, i) => {
-        return i.name.includes(name)
+        return i.name.toLowerCase().includes(name.toLowerCase())
     };
     filterCuisine = (cuisine, i) => {
-        debugger
         return i.cuisine.includes(cuisine)
     };
     filterSpeed = (speed, i) => {
+        if(speed ==='')
+            speed=120
         return (i.max_delivery_time <= speed)
     };
 

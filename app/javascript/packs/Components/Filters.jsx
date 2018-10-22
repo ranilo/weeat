@@ -45,10 +45,9 @@ class Filters extends React.Component {
     }
 
     render() {
-        const cuisines  = this.props.items;//['Asian', 'tes'];
+        const cuisines  = this.props.items;
         const rating  = [0,1,2,3];
         const speed = [10,20,30, 60, 90, 120];
-
         return <React.Fragment>
         <div className={style['name-filter']}>
                 <input type='text' value={this.state.name}
