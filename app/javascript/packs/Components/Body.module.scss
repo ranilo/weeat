@@ -1,0 +1,13 @@
+.body {
+  //background: #000000;
+
+}
+
+.map {
+  background-color: darkgray;
+  align-self: start;
+  justify-self: stretch;
+  display: flex;
+  grid-area: map;
+  min-height: 470px;
+}

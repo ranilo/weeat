@@ -1,0 +1,45 @@
+.RestaurantItem {
+  display: inline-grid;
+  grid-template-columns: 45px auto;
+  grid-template-rows: 50px 50px;
+  grid-template-areas:
+          ". name"
+          "cuisine rating";
+  $CARD_COLOR: #FAFAFA;
+  background: $CARD_COLOR;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px #000000;
+
+  .rating {
+    font-family: Helvetica;
+    grid-area: rating;
+
+  }
+  .name {
+    font-size: 20px;
+    color: #000000;
+    letter-spacing: 0;
+    grid-area: name;
+    display: flex;
+    flex-direction: row;
+    align-self: end;
+  }
+  .cuisine {
+    font-family: Helvetica;
+    font-size: 60px;
+    align-self: center;
+    display: flex;
+    padding-left: 6px;
+    grid-area: cuisine;
+    color: red;
+
+  }
+
+  .business_friendly {
+    font-family: Helvetica;
+    background-color: RED;
+
+  }
+}
+

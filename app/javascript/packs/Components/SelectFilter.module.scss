@@ -1,0 +1,20 @@
+//@import "grid";
+.select_filter {
+  flex-direction: column;
+  display: flex;
+  align-self: center;
+
+  label {
+    color: white;
+  }
+
+  &_cuisines {
+    grid-column: 2/3;
+  }
+  &_rating {
+    grid-column: 3/4;
+  }
+  &_speed {
+    grid-column: 4/5;
+  }
+}
