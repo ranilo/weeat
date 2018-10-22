@@ -1,0 +1,4 @@
+@mixin grid() {
+  grid-template-columns: 42px 1fr 1fr 1fr 42px;
+  grid-column-gap: 10px;
+}
