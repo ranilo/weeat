@@ -45,9 +45,9 @@ class Filters extends React.Component {
     }
 
     render() {
-        const cuisines  = ['Asian', 'tes'];
+        const cuisines  = this.props.items;//['Asian', 'tes'];
         const rating  = [0,1,2,3];
-        const speed = [10,20,30];
+        const speed = [10,20,30, 60, 90, 120];
 
         return <React.Fragment>
         <div className={style['name-filter']}>

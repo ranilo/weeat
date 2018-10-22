@@ -7,7 +7,8 @@ class CollectRestWorker
   sidekiq_options retry: false
 
   def perform (params)
-    restaurant_count = 0
+    restaurant_count = params || 0
+    if(restaurant_count <300)
     # get variables from system params
     # get the count from db
     # update db count
@@ -15,6 +16,7 @@ class CollectRestWorker
     collect_rest (restaurant_count)
     # call get reviews async
     # set timer for next rest
+    end
   end
 
   def collect_rest (index)
@@ -36,6 +38,8 @@ class CollectRestWorker
         }
         id =  create(rest_params)
         CollectReviewWorker.perform_async(index: restaurant.restaurant.id, id: id)
+        sleep(10.second)
+        CollectRestWorker.perform_async(index+1)
       end
     end
   end

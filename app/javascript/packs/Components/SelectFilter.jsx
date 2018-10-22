@@ -22,7 +22,7 @@ class SelectFilter extends React.Component {
                 {displayName}
             </label>
             <select  className={style['dropdown-menu']} value={this.state.value } type='select' onChange={this.handleChange}>
-                <option key='' defaultValue='' > select {displayName}</option>
+                <option key='' value='' > select {displayName}</option>
                 { items.map((item) => <option key={item.toString()} value={item}>{item}</option>)}
             </select>
         </div>

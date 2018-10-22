@@ -13,6 +13,7 @@ export default class Body extends React.Component {
             error: false,
             visibleItems: [],
             items: [],
+            cuisines: []
         }
     }
 
@@ -29,7 +30,8 @@ export default class Body extends React.Component {
                     this.setState({
                         isLoaded: true,
                         items: transformedResults,
-                        visibleItems: transformedResults
+                        visibleItems: transformedResults,
+                        cuisines: transformedResults.map(a=>a.cuisine)
                     });
                 },
                 (error) => {
@@ -61,6 +63,7 @@ export default class Body extends React.Component {
         return i.name.includes(name)
     };
     filterCuisine = (cuisine, i) => {
+        debugger
         return i.cuisine.includes(cuisine)
     };
     filterSpeed = (speed, i) => {
@@ -68,14 +71,14 @@ export default class Body extends React.Component {
     };
 
     render() {
-        const {error, isLoaded, visibleItems} = this.state;
+        const {error, isLoaded, visibleItems, cuisines} = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
             return <React.Fragment>
-                <Filters onFilterChange={this.combineFilters.bind(this)}/>
+                <Filters onFilterChange={this.combineFilters.bind(this)} items={Array.from(new Set(cuisines))}/>
                 <RestaurantList items={visibleItems}/>
                 <div className={styles['map']} />
             </React.Fragment>;
